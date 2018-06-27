@@ -14,7 +14,7 @@ describe('VideoListEntry', function() {
   beforeEach(function() {
     cuteCatVideo = renderIntoDocument(
       <Wrapper>
-        <VideoListEntry video={window.fakeVideoData[0]} />
+        <VideoListEntry video={window.fakeVideoData[0]} /> 
       </Wrapper>
     );
 
