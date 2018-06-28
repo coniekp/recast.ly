@@ -2,14 +2,49 @@ class App extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      videolist: props.videos || [],
-      currentVideo: (props.videos && props.videos[0]) || {}
+      videoList: [],
+      currentVideo: {},
+      val: 'cat'
     };
   }
+
+  componentDidMount() {
+    this.search();
+  }
+    
+  search() {
+    var options = {
+      max: 5, 
+      query: this.state.val,
+      key: window.YOUTUBE_API_KEY
+    };
+
+    this.props.searchYouTube(options, function(videos) {
+      this.setState({
+        videoList: videos,
+        currentVideo: videos[0],
+        val: ''
+      }); 
+    }.bind(this));
+  }
+
+  handleKeyPress(event) {
+    var key = event.key;
+    this.setState({
+      val: this.state.val + key
+    });
+  } 
   
   handleClick(video) {
     this.setState({
-      currentVideo: video
+      currentVideo: video,
+    });
+  }
+
+  submitQuery() {
+    this.search();
+    this.setState({
+      val: ''
     });
   }
   
@@ -17,7 +52,7 @@ class App extends React.Component {
     return (<div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
-          <Search />
+          <Search val= {this.state.val} onClick={this.submitQuery.bind(this)} onChange={this.handleKeyPress.bind(this)}/>
         </div>
       </nav>
       <div className="row">
@@ -25,7 +60,7 @@ class App extends React.Component {
           <VideoPlayer video={this.state.currentVideo}/>
         </div>
         <div className="col-md-5">
-          <VideoList videos={this.state.videolist} onClick={this.handleClick.bind(this)}/>
+          <VideoList videos={this.state.videoList} onClick={this.handleClick.bind(this)}/>
         </div>
       </div>
     </div>
