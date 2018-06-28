@@ -29,9 +29,9 @@ class App extends React.Component {
   }
 
   handleKeyPress(event) {
-    var key = event.key;
+    var key = event.target.value;
     this.setState({
-      val: this.state.val + key
+      val: key
     });
   } 
   
