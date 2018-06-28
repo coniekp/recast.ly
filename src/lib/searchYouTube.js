@@ -1,5 +1,20 @@
 var searchYouTube = (options, callback) => {
-  // TODO
+  // options.videoEmbeddable = 'true';
+  // options.part = 'snippet';
+    
+  var data = {
+    'maxResults': options.max,
+    'q': options.query,
+    'key': options.key,
+    'part': 'snippet',
+    'videoEmbeddable': 'true',
+    'type': 'video'
+  };
+  $.get('https://www.googleapis.com/youtube/v3/search', data, function(data) {
+    callback(data.items);
+  });
+
 };
+
 
 window.searchYouTube = searchYouTube;

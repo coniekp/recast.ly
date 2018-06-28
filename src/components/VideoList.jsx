@@ -1,10 +1,9 @@
 var VideoList = (props) => {
-  
   var rows = [];
-  props.videos.forEach((video) => {
-    rows.push(<VideoListEntry video={video} />);
+  props.videos.forEach((video, index) => {
+    rows.push(<VideoListEntry video={video} onClick={props.onClick}/>);
   });
-  
+
   return (
     <div className="video-list">
       {rows}
