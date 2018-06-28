@@ -1,4 +1,7 @@
 var VideoPlayer = (props) => { 
+  if (!props.video) {
+    return null; 
+  }
   props.video.id = props.video.id || {};
   props.video.snippet = props.video.snippet || {};
 

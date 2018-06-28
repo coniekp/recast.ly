@@ -23,7 +23,7 @@ class App extends React.Component {
       this.setState({
         videoList: videos,
         currentVideo: videos[0],
-        val: ''
+        // val: ''
       }); 
     }.bind(this));
   }
@@ -33,6 +33,10 @@ class App extends React.Component {
     this.setState({
       val: key
     });
+
+    console.log(this.state.val);
+
+    _.debounce(this.search.bind(this), 500)();
   } 
   
   handleClick(video) {
