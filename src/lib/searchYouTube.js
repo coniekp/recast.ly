@@ -8,7 +8,8 @@ var searchYouTube = (options, callback) => {
     'key': options.key,
     'part': 'snippet',
     'videoEmbeddable': 'true',
-    'type': 'video'
+    'type': 'video',
+    'safeSearch': 'strict'
   };
   $.get('https://www.googleapis.com/youtube/v3/search', data, function(data) {
     callback(data.items);
