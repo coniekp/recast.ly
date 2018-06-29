@@ -4,7 +4,8 @@ class App extends React.Component {
     this.state = {
       videoList: [],
       currentVideo: {},
-      val: 'cat'
+      val: 'cat',
+      auto: true
     };
   }
 
@@ -34,8 +35,6 @@ class App extends React.Component {
       val: key
     });
 
-    console.log(this.state.val);
-
     _.debounce(this.search.bind(this), 500)();
   } 
   
@@ -51,8 +50,17 @@ class App extends React.Component {
       val: ''
     });
   }
+
+  toggleAuto() {
+    this.setState({
+      auto: !this.state.auto
+    });
+  }
   
   render() {
+    var style = {background: this.state.auto ? '#b2cfff' : '#fff'};
+
+
     return (<div>
       <nav className="navbar">
         <div className="col-md-6 offset-md-3">
@@ -61,7 +69,7 @@ class App extends React.Component {
       </nav>
       <div className="row">
         <div className="col-md-7">
-          <VideoPlayer video={this.state.currentVideo}/>
+          <VideoPlayer video={this.state.currentVideo} onClick={this.toggleAuto.bind(this)} toggle={this.state.auto} style={style} />
         </div>
         <div className="col-md-5">
           <VideoList videos={this.state.videoList} onClick={this.handleClick.bind(this)}/>

@@ -9,10 +9,9 @@ var searchYouTube = (options, callback) => {
     'safeSearch': 'strict'
   };
 
-  $.get('https://www.googleapis.com/youtube/v3/search', data, function(data) {   
+  $.get('https://www.googleapis.com/youtube/v3/search', data, function(data) {      
     callback(data.items);
   });
 };
-
 
 window.searchYouTube = searchYouTube;

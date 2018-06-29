@@ -8,8 +8,11 @@ var VideoPlayer = (props) => {
   
   return ( <div className="video-player">
     <div className="embed-responsive embed-responsive-16by9">
-      <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${props.video.id.videoId}`} allowFullScreen></iframe>
+      <iframe className="embed-responsive-item" src={`https://www.youtube.com/embed/${props.video.id.videoId}?autoplay=${Number(props.toggle)}`} allowFullScreen></iframe>
     </div>
+    <button id='autoplay' onClick={props.onClick} style={props.style}> 
+      AUTOPLAY
+    </button>
     <div className="video-player-details">
       <h3>{props.video.snippet.title}</h3>
       <div>{props.video.snippet.description}</div>
